@@ -3,14 +3,19 @@ package hello.hellospring.repository;
 import hello.hellospring.domain.Member;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class MemoryMemberRepository implements MemberRepository {
 
-    private static ConcurrentHashMap<Long, Member> store = new ConcurrentHashMap<>();
+    private static HashMap<Long, Member> store = new HashMap<>();
     private static long sequence = 0L;
+
+    @Override
+    public void clearStore() {
+        store.clear();
+    }
 
     @Override
     public Member save(Member member) {
