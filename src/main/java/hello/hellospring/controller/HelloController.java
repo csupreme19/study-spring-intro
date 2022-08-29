@@ -20,6 +20,9 @@ public class HelloController {
 
     /**
      * 일반 View 응답인 경우 HttpMessageConverter가 아닌 ViewResolver를 사용한다.
+     * HandlerMapping 순서
+     * 1. 컨트롤러 @RequestMapping
+     * 2. static 파일
      */
     @RequestMapping("hello-mvc")
     public String hello(@RequestParam("name") String name, Model model) {
