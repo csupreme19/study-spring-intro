@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -48,5 +50,19 @@ class MemberServiceIntegrationTest {
         // then
         IllegalStateException e = assertThrows(IllegalStateException.class, () -> memberService.join(member2));
         assertThat(e.getMessage()).contains("존재하는 회원");
+    }
+
+    @Test
+    void 회원_목록_조회() {
+        // given
+        Member member = new Member();
+        member.setName("choi");
+
+        // when
+        Long saveId = memberService.join(member);
+
+        // then
+        List<Member> members = memberService.findMembers();
+        assertThat(members).isNotEmpty();
     }
 }

@@ -2,13 +2,14 @@ package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-// Jpa는 Transactional 안에서 수행되어야함.
-@Transactional
+@Slf4j
+@Transactional // Jpa는 Transactional 안에서 수행되어야함.
 public class MemberService {
 
     private final MemberRepository memberRepository;
@@ -23,12 +24,20 @@ public class MemberService {
      */
     public Long join(Member member) throws IllegalStateException{
 
-        // 중복 회원이라면 스킵
-        validateDuplicateMember(member);
+        long startTimeMs = System.currentTimeMillis();
 
-        memberRepository.save(member);
+        try {
+            // 중복 회원이라면 스킵
+            validateDuplicateMember(member);
+            memberRepository.save(member);
+            return member.getId();
+        } finally {
+            long endTimeMs = System.currentTimeMillis();
+            long resultTimeMs = endTimeMs - startTimeMs;
+            log.info("join() resultTimeMs: {}ms", resultTimeMs);
+        }
 
-        return member.getId();
+
     }
 
     private void validateDuplicateMember(Member member) {
@@ -42,7 +51,14 @@ public class MemberService {
      * 전체 회원 조회
      */
     public List<Member> findMembers() {
-        return memberRepository.findAll();
+        long startTimeMs = System.currentTimeMillis();
+        try {
+            return memberRepository.findAll();
+        } finally {
+            long endTimeMs = System.currentTimeMillis();
+            long resultTimeMs = endTimeMs - startTimeMs;
+            log.info("findMembers() resultTimeMs: {}ms", resultTimeMs);
+        }
     }
 
     /**
