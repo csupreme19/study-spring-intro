@@ -1,5 +1,6 @@
 package hello.hellospring.config;
 
+import hello.hellospring.aop.TimeTraceAop;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -13,9 +14,9 @@ import javax.sql.DataSource;
 @RequiredArgsConstructor
 public class SpringConfig {
 
-    private final DataSource dataSource;
+//    private final DataSource dataSource;
 
-    private final EntityManager entityManager;
+//    private final EntityManager entityManager;
 
     private final MemberRepository memberRepository;
 
@@ -31,5 +32,10 @@ public class SpringConfig {
 //        return new JdbcTemplateMemberRepository(dataSource);
 //        return new JpaMemberRepository(entityManager);
 //    }
+
+    @Bean
+    TimeTraceAop timeTraceAop() {
+        return new TimeTraceAop();
+    }
 
 }

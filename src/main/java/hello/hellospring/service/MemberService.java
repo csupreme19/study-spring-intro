@@ -24,18 +24,18 @@ public class MemberService {
      */
     public Long join(Member member) throws IllegalStateException{
 
-        long startTimeMs = System.currentTimeMillis();
+//        long startTimeMs = System.currentTimeMillis();
 
-        try {
+//        try {
             // 중복 회원이라면 스킵
             validateDuplicateMember(member);
             memberRepository.save(member);
             return member.getId();
-        } finally {
-            long endTimeMs = System.currentTimeMillis();
-            long resultTimeMs = endTimeMs - startTimeMs;
-            log.info("join() resultTimeMs: {}ms", resultTimeMs);
-        }
+//        } finally {
+//            long endTimeMs = System.currentTimeMillis();
+//            long resultTimeMs = endTimeMs - startTimeMs;
+//            log.info("join() resultTimeMs: {}ms", resultTimeMs);
+//        }
 
 
     }
@@ -51,14 +51,14 @@ public class MemberService {
      * 전체 회원 조회
      */
     public List<Member> findMembers() {
-        long startTimeMs = System.currentTimeMillis();
-        try {
+//        long startTimeMs = System.currentTimeMillis();
+//        try {
             return memberRepository.findAll();
-        } finally {
-            long endTimeMs = System.currentTimeMillis();
-            long resultTimeMs = endTimeMs - startTimeMs;
-            log.info("findMembers() resultTimeMs: {}ms", resultTimeMs);
-        }
+//        } finally {
+//            long endTimeMs = System.currentTimeMillis();
+//            long resultTimeMs = endTimeMs - startTimeMs;
+//            log.info("findMembers() resultTimeMs: {}ms", resultTimeMs);
+//        }
     }
 
     /**
