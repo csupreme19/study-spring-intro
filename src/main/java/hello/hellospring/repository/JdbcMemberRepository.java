@@ -127,11 +127,6 @@ public class JdbcMemberRepository implements MemberRepository {
         }
     }
 
-    @Override
-    public void clearStore() {
-
-    }
-
     private Connection getConnection() {
         // dataSource.getConnection()은 호출시마다 새 연결을 생성하지만 DataSourceUtils를 사용하면 기존의 Connection을 사용
         return DataSourceUtils.getConnection(dataSource);

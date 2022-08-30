@@ -39,11 +39,6 @@ public class JpaMemberRepository implements MemberRepository {
                 .getResultList();
     }
 
-    @Override
-    public void clearStore() {
-
-    }
-
     private RowMapper<Member> memberRowMapper() {
         return (rs, rowNum) -> {
             Member member = new Member();

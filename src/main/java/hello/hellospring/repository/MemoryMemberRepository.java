@@ -12,7 +12,6 @@ public class MemoryMemberRepository implements MemberRepository {
     private static HashMap<Long, Member> store = new HashMap<>();
     private static long sequence = 0L;
 
-    @Override
     public void clearStore() {
         store.clear();
     }

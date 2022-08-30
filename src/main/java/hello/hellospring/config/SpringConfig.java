@@ -1,6 +1,5 @@
 package hello.hellospring.config;
 
-import hello.hellospring.repository.JpaMemberRepository;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -18,17 +17,19 @@ public class SpringConfig {
 
     private final EntityManager entityManager;
 
-    @Bean
-    MemberService memberService() {
-        return new MemberService(memberRepository());
-    }
+    private final MemberRepository memberRepository;
 
     @Bean
-    MemberRepository memberRepository() {
+    MemberService memberService() {
+        return new MemberService(memberRepository);
+    }
+
+//    @Bean
+//    MemberRepository memberRepository() {
 //        return new MemoryMemberRepository();
 //        return new JdbcMemberRepository(dataSource);
 //        return new JdbcTemplateMemberRepository(dataSource);
-        return new JpaMemberRepository(entityManager);
-    }
+//        return new JpaMemberRepository(entityManager);
+//    }
 
 }

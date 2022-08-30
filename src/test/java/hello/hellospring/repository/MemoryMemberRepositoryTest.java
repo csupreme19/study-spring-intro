@@ -12,7 +12,7 @@ class MemoryMemberRepositoryTest {
 
     private static final Logger log = LoggerFactory.getLogger(MemoryMemberRepositoryTest.class);
 
-    MemberRepository memberRepository = new MemoryMemberRepository();
+    MemoryMemberRepository memberRepository = new MemoryMemberRepository();
 
     @AfterEach
     void tearDown() {

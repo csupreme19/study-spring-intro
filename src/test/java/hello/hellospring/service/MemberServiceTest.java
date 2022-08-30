@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MemberServiceTest {
 
-    MemberRepository memberRepository;
+    MemoryMemberRepository memberRepository;
     MemberService memberService;
 
     @BeforeEach
